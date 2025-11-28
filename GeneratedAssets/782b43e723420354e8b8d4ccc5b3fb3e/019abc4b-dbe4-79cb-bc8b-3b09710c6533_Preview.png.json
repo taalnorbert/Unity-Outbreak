@@ -1,0 +1,11 @@
+{
+    "asset": "c04532a5e6e7e624b93c481d5af446bc",
+    "fileName": "019abc4b-dbe4-79cb-bc8b-3b09710c6533_Preview.png",
+    "prompt": "material for my pistol that i can use, it should look like a glock from cs2",
+    "negativePrompt": "",
+    "model": "44ec3749-963a-44b1-aa54-dc19f6ed8ab2",
+    "modelName": "Unity Texture2D",
+    "customSeed": 1703209730,
+    "w3CTraceId": "36a76afceba24ce5f0be1de81ee339aa",
+    "refinementMode": "Generation"
+}

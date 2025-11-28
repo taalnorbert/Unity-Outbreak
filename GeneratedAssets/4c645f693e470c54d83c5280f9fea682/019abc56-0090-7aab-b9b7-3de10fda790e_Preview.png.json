@@ -1,0 +1,11 @@
+{
+    "asset": "4c645f693e470c54d83c5280f9fea682",
+    "fileName": "019abc56-0090-7aab-b9b7-3de10fda790e_Preview.png",
+    "prompt": "generate a material for a realistic zombie chest",
+    "negativePrompt": "",
+    "model": "44ec3749-963a-44b1-aa54-dc19f6ed8ab2",
+    "modelName": "Unity Texture2D",
+    "customSeed": 1783051905,
+    "w3CTraceId": "2a6b1fc872483ef58aed31d218b1aa43",
+    "refinementMode": "Generation"
+}

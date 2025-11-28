@@ -1,0 +1,20 @@
+{
+    "asset": "0f9d81ef6bec40942a0915330eb5937f",
+    "fileName": "019ac740-69f1-7c0e-b454-e7aa412a4d49.png",
+    "prompt": "generate an exit ICON, make it full black, remove any background besides the EXIT ICON",
+    "negativePrompt": "",
+    "model": "5b5b2af1-6ea4-4266-b087-cc9f3bf4f450",
+    "modelName": "Flux.1 Dev",
+    "customSeed": -1,
+    "w3CTraceId": "d1ff38bcc3e3dd76fcd3d15739fcaf35",
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0
+}
