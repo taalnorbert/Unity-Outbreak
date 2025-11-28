@@ -1,0 +1,11 @@
+{
+    "asset": "caa3be94bd27ad5478c3a52aa3c3ede9",
+    "fileName": "019abc53-8408-7a1d-984a-86300a5dcc7c_Preview.png",
+    "prompt": "generate material for realistic zombie head",
+    "negativePrompt": "",
+    "model": "44ec3749-963a-44b1-aa54-dc19f6ed8ab2",
+    "modelName": "Unity Texture2D",
+    "customSeed": 1284780151,
+    "w3CTraceId": "b6951493ee43c44f71bc6ef54e5c6df8",
+    "refinementMode": "Generation"
+}

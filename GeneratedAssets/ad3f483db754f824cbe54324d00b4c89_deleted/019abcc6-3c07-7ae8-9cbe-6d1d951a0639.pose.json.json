@@ -1,0 +1,11 @@
+{
+    "asset": "ad3f483db754f824cbe54324d00b4c89",
+    "fileName": "019abcc6-3c07-7ae8-9cbe-6d1d951a0639.pose.json",
+    "prompt": "pistol idle animation when pistol is in the hand",
+    "negativePrompt": "",
+    "model": "9e46c009-67d8-4254-a3a0-32e3168247ee",
+    "modelName": "Text to Motion",
+    "customSeed": 131343673,
+    "w3CTraceId": "6d34ba2514527ff938fc52425141f32e",
+    "isTrimmed": false
+}

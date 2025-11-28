@@ -1,0 +1,11 @@
+{
+    "asset": "caa3be94bd27ad5478c3a52aa3c3ede9",
+    "fileName": "019abc4f-7e64-7cdf-a452-eb4bdf5eb22c_Preview.png",
+    "prompt": "generate a realistic zombie material",
+    "negativePrompt": "",
+    "model": "44ec3749-963a-44b1-aa54-dc19f6ed8ab2",
+    "modelName": "Unity Texture2D",
+    "customSeed": 694793770,
+    "w3CTraceId": "3097883a7818e763909b38e737313dfc",
+    "refinementMode": "Generation"
+}

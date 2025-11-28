@@ -1,0 +1,11 @@
+{
+    "asset": "5b8f39ab03a8937418a67ed28f1f6959",
+    "fileName": "019abcb7-b07d-79c5-a67b-265ef02783eb.pose.json",
+    "prompt": "reload pistol",
+    "negativePrompt": "",
+    "model": "9e46c009-67d8-4254-a3a0-32e3168247ee",
+    "modelName": "Text to Motion",
+    "customSeed": 1641389338,
+    "w3CTraceId": "463d9852d88fd4091c609c01137eecad",
+    "isTrimmed": false
+}
