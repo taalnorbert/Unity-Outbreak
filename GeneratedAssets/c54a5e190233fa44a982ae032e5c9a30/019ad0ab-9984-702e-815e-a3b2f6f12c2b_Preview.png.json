@@ -1,0 +1,11 @@
+{
+    "asset": "c54a5e190233fa44a982ae032e5c9a30",
+    "fileName": "019ad0ab-9984-702e-815e-a3b2f6f12c2b_Preview.png",
+    "prompt": "generate a cage with door material for my cube pls but door and grids should be clearly visible\n",
+    "negativePrompt": "",
+    "model": "44ec3749-963a-44b1-aa54-dc19f6ed8ab2",
+    "modelName": "Unity Texture2D",
+    "customSeed": 771923892,
+    "w3CTraceId": "7e4be2e6d7195d164ebe47c3d94d1316",
+    "refinementMode": "Generation"
+}

@@ -1,0 +1,20 @@
+{
+    "asset": "726569c57948a85449239becc9ba5517",
+    "fileName": "019ad09b-bba2-7002-b37c-80bd924d4f6a.png",
+    "prompt": "cage game object with cage door",
+    "negativePrompt": "",
+    "model": "5b5b2af1-6ea4-4266-b087-cc9f3bf4f450",
+    "modelName": "Flux.1 Dev",
+    "customSeed": -1,
+    "w3CTraceId": "c69a543418c0d3a88a43ec46ea086fc2",
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0
+}

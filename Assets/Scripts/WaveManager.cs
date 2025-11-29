@@ -11,32 +11,40 @@ public class WaveManager : MonoBehaviour
     private int currentWave = 0;
     private int enemiesRemaining = 0;
     private int enemiesToSpawn = 0;
+    private Coroutine currentSpawnCoroutine;
 
-    private UIManager1 uiManager1; 
+    private UIManager1 uiManager1;
 
     void Start()
     {
-        uiManager1 = FindFirstObjectByType<UIManager1>(); 
-        StartNextWave();
+        uiManager1 = FindFirstObjectByType<UIManager1>();
     }
 
-    void StartNextWave()
+    public void StartContinuousSpawn(float rate)
     {
-        currentWave++;
-        enemiesToSpawn = currentWave * 2; 
-        enemiesRemaining = enemiesToSpawn;
+        if (enemyPrefab == null || spawnPoints.Length == 0) return;
         
-        Debug.Log("Hullám indítása: " + currentWave);
-
-        StartCoroutine(SpawnWave());
+        if (currentSpawnCoroutine != null) StopCoroutine(currentSpawnCoroutine);
+        
+        currentSpawnCoroutine = StartCoroutine(ContinuousSpawnLoop(rate));
     }
 
-    IEnumerator SpawnWave()
+    public void StopSpawning()
     {
-        for (int i = 0; i < enemiesToSpawn; i++)
+        if (currentSpawnCoroutine != null)
+        {
+            StopCoroutine(currentSpawnCoroutine);
+            Debug.Log("Zombi spawnolás leállítva!");
+        }
+    }
+
+    IEnumerator ContinuousSpawnLoop(float rate)
+    {
+        while (true)
         {
             SpawnEnemy();
-            yield return new WaitForSeconds(0.5f); 
+            enemiesRemaining++;
+            yield return new WaitForSeconds(1f / rate);
         }
     }
 
@@ -52,28 +60,6 @@ public class WaveManager : MonoBehaviour
     {
         enemiesRemaining--;
         Debug.Log("Ellenség maradt: " + enemiesRemaining);
-
-        if (enemiesRemaining <= 0)
-        {
-            if (currentWave < totalWaves)
-            {
-                Invoke("StartNextWave", timeBetweenWaves);
-            }
-            else
-            {
-                Debug.Log("Minden hullám befejeződött. JÁTÉK NYERT!");
-
-                Time.timeScale = 0f;
-
-                if (uiManager1 != null) 
-                {
-                    uiManager1.ShowGameWin(); 
-                }
-                
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-            }
-        }
     }
 
     public int GetCurrentWaveNumber()
