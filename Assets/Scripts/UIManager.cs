@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public Image deathWarningImage;
 
     private PlayerHealth playerHealth;
+<<<<<<< HEAD
     private Weapon weapon; 
 
     public void onGameOver()
@@ -19,6 +20,24 @@ public class UIManager : MonoBehaviour
         ammoText.gameObject.SetActive(false);
     }
 
+=======
+<<<<<<< Updated upstream
+    private WaveManager waveManager;
+    private Weapon weapon; 
+
+=======
+    private Weapon weapon;
+
+    public GameObject hpContainer;
+
+    public void onGameOver()
+    {
+        hpContainer.SetActive(false);
+        ammoText.gameObject.SetActive(false);
+    }
+
+>>>>>>> Stashed changes
+>>>>>>> 4682e6f (ui bugfix)
     void Start()
     {
        
