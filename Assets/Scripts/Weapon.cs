@@ -3,7 +3,9 @@ using System.Collections;
 
 public class Weapon : MonoBehaviour
 {
-    public float damage = 10f;
+    public float minDamage = 10f;
+    public float maxDamage = 25f;
+
     public float range = 100f;
     public float fireRate = 1f;
     public int maxAmmo = 30;
@@ -72,6 +74,7 @@ public class Weapon : MonoBehaviour
             
             if (damageable != null)
             {
+                float damage = Random.Range(minDamage, maxDamage);
                 damageable.TakeDamage(damage);
             }
 
