@@ -73,18 +73,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         if (uiManager != null)
         {
-<<<<<<< HEAD
-            GameObject hud = GameObject.FindGameObjectWithTag("HUD");
-            UIManager uimanager = hud.GetComponent<UIManager>();
-            uimanager.onGameOver();
-=======
-<<<<<<< Updated upstream
-=======
             GameObject hud = GameObject.FindGameObjectWithTag("HUD");
             UIManager _uimanager = hud.GetComponent<UIManager>();
             _uimanager.onGameOver();
->>>>>>> Stashed changes
->>>>>>> 4682e6f (ui bugfix)
             uiManager.ShowGameOver();
         }
 
