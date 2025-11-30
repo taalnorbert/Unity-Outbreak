@@ -1,13 +1,17 @@
 using UnityEngine;
-using UnityEngine.AI; 
+using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class ZombieAI : MonoBehaviour, IDamageable
 {
-    public float maxHealth = 50f;
+    public Slider slider;
+
+    public float maxHealth = 100f;
     public float currentHealth;
     public float chaseDistance = 15f; 
     public float lookRadius = 10f; 
-    public float damage = 10f; 
+    public float minDamage = 5f;
+    public float maxDamage = 15f;
     public float attackRate = 1f; 
     
     public AudioSource alertSoundSource; 
@@ -24,6 +28,10 @@ public class ZombieAI : MonoBehaviour, IDamageable
     void Start()
     {
         currentHealth = maxHealth;
+        slider.maxValue = maxHealth;
+        slider.minValue = 0;
+
+        slider.value = currentHealth;
         
         target = GameObject.FindGameObjectWithTag("Player").transform; 
         agent = GetComponent<NavMeshAgent>();
@@ -66,6 +74,7 @@ public class ZombieAI : MonoBehaviour, IDamageable
                     
                     if (playerDamageable != null)
                     {
+                        int damage = (int)Random.Range(minDamage, maxDamage);
                         Debug.Log("Zombi TÁMAD! Játékos kapott sebzést: " + damage);
                         playerDamageable.TakeDamage(damage); 
                     }
@@ -84,10 +93,13 @@ public class ZombieAI : MonoBehaviour, IDamageable
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        slider.value = currentHealth;
         Debug.Log(gameObject.name + " sebződött. Új HP: " + currentHealth);
 
         if (currentHealth <= 0)
         {
+            slider.enabled = false;
+            slider.gameObject.SetActive(false);
             Die();
         }
     }
