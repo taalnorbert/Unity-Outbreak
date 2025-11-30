@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
+using UnityEngine.UI;
 
 public class HostageCage : MonoBehaviour
 {
@@ -10,7 +11,11 @@ public class HostageCage : MonoBehaviour
     
     // Ajtó/Ketrec objektum (ezt fogjuk elmozdítani)
     public Transform cageObject; 
-    public Vector3 openOffset = new Vector3(0, -5, 0); // Eltolás a föld alá
+    public Vector3 openOffset = new Vector3(0, -5, 0);
+
+    [Header("UI Vizuális Visszajelzés")]
+    public GameObject interactionUI;
+    public Transform progressBarScaleTarget;
 
     private float interactionTimer = 0f;
     private bool isRescued = false;
@@ -20,27 +25,47 @@ public class HostageCage : MonoBehaviour
 
     void Start()
     {
-        // Győződj meg róla, hogy a CageObject be van húzva
         if (cageObject == null) cageObject = transform; 
+        
+        if (interactionUI != null) interactionUI.SetActive(false); 
+        if (progressBarScaleTarget != null) progressBarScaleTarget.localScale = new Vector3(0f, 1f, 1f);
     }
 
     void Update()
     {
         if (isRescued) return;
         
-        // Keresse meg a játékost és nézze meg a távolságot
         Transform player = GameObject.FindGameObjectWithTag("Player").transform;
-        if (player == null) return;
+        
+        if (player == null) 
+        {
+            Debug.LogError("HostageCage: Nem található 'Player' Tag-gel rendelkező objektum!");
+            return;
+        }
         
         float distance = Vector3.Distance(transform.position, player.position);
+        
+        bool isCloseEnough = distance <= interactDistance;
 
-        // Ha a játékos közel van ÉS lenyomva tartja az 'E' gombot
-        if (distance <= interactDistance && Input.GetKey(KeyCode.E))
+        if (interactionUI != null)
         {
+            interactionUI.SetActive(isCloseEnough); 
+        }
+
+        if (isCloseEnough && Input.GetKey(KeyCode.E))
+        {
+            Debug.Log("Nyomom az E-t és közel vagyok!");
+            
             interactionTimer += Time.deltaTime;
             
-            // Itt kellene egy UI progressBar-t frissíteni (később)
-            Debug.Log($"Ketrec nyitása: {(interactionTimer / interactionTimeRequired * 100).ToString("F0")}%");
+            float progress = interactionTimer / interactionTimeRequired;
+            
+            if (progressBarScaleTarget != null)
+            {
+                progressBarScaleTarget.localScale = new Vector3(progress, 1f, 1f);
+            }
+            
+            Debug.Log($"Ketrec nyitása: {(progress * 100).ToString("F0")}%");
 
             if (interactionTimer >= interactionTimeRequired)
             {
@@ -49,10 +74,13 @@ public class HostageCage : MonoBehaviour
         }
         else
         {
-            // Ha felengedi a gombot, a timer nullázódik
             if (interactionTimer > 0)
             {
                 interactionTimer = 0f;
+                if (progressBarScaleTarget != null)
+                {
+                    progressBarScaleTarget.localScale = new Vector3(0f, 1f, 1f);
+                }
                 Debug.Log("Interakció megszakítva.");
             }
         }
@@ -63,10 +91,10 @@ public class HostageCage : MonoBehaviour
         isRescued = true;
         Debug.Log("Act 1: Túsz kiszabadítva! Spawn leállítva.");
 
-        // Ajtó eltávolítása (Cube eltolása/eltüntetése)
         StartCoroutine(OpenDoorAnimation());
 
-        // Értesítjük a Flow Managert
+        if (interactionUI != null) interactionUI.SetActive(false); 
+        
         OnRescueCompleted?.Invoke();
     }
 
