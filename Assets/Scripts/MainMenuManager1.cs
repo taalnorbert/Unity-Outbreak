@@ -1,9 +1,13 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
+    public GameObject settingsPanel;
+    public GameObject zombieObject;
+
     private void Start()
     {
         StartCoroutine(PreloadLoadingScene());
@@ -37,5 +41,11 @@ public class MainMenuManager : MonoBehaviour
     public void StartGame()
     {
         SceneLoader.LoadScene("Main");
+    }
+
+    public void Settings(bool open)
+    {
+        settingsPanel.SetActive(open);   
+        zombieObject.SetActive(!open);
     }
 }

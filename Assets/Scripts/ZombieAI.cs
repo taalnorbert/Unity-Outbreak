@@ -27,6 +27,9 @@ public class ZombieAI : MonoBehaviour, IDamageable
 
     void Start()
     {
+        alertSoundSource.volume = Settings.gameVolume / 100f;
+        deathSoundSource.volume = Settings.gameVolume / 100f;
+        
         currentHealth = maxHealth;
         slider.maxValue = maxHealth;
         slider.minValue = 0;

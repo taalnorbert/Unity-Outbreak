@@ -32,6 +32,14 @@ public class GameFlowManager : MonoBehaviour
         uiManager1 = FindFirstObjectByType<UIManager1>();
         narrativeUI = FindFirstObjectByType<NarrativeUI>();
         
+        if (savedAct >= 3)
+        {
+            PlayerPrefs.DeleteKey("ActProgress");
+            PlayerPrefs.Save();
+            savedAct = 1;
+            Debug.Log("JÁTÉK VÉGE mentés törölve. Új játék indul.");
+        }
+        
         if (savedAct >= 2)
         {
             Debug.Log("MENTÉS BETÖLTVE: Act 2 (Boss Fight) indul.");
@@ -156,6 +164,9 @@ public class GameFlowManager : MonoBehaviour
                 narrativeUI.DisplayMessage("Főgonosz legyőzve. A túsz sikeresen kiszabadítva. Küldetés teljesítve!", 6f);
             }
             yield return new WaitForSecondsRealtime(6.5f);
+
+            PlayerPrefs.SetInt("ActProgress", 3);
+            PlayerPrefs.Save();
 
             Debug.Log("JÁTÉK NYERT! A Boss legyőzve!");
             
