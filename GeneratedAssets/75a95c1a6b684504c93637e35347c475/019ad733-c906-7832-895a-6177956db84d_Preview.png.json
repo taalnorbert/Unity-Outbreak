@@ -1,0 +1,11 @@
+{
+    "asset": "75a95c1a6b684504c93637e35347c475",
+    "fileName": "019ad733-c906-7832-895a-6177956db84d_Preview.png",
+    "prompt": "grass",
+    "negativePrompt": "",
+    "model": "44ec3749-963a-44b1-aa54-dc19f6ed8ab2",
+    "modelName": "Unity Texture2D",
+    "customSeed": 435700364,
+    "w3CTraceId": "f64cd667a0f18c8ec07120318fab1009",
+    "refinementMode": "Generation"
+}
