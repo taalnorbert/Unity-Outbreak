@@ -5,11 +5,9 @@ using UnityEngine.UI;
 
 public class HostageCage : MonoBehaviour
 {
-    // 5 másodperc lenyomva tartás
     public float interactionTimeRequired = 5.0f; 
     public float interactDistance = 2.0f;       
     
-    // Ajtó/Ketrec objektum (ezt fogjuk elmozdítani)
     public Transform cageObject; 
     public Vector3 openOffset = new Vector3(0, -5, 0);
 
@@ -20,7 +18,6 @@ public class HostageCage : MonoBehaviour
     private float interactionTimer = 0f;
     private bool isRescued = false;
 
-    // Ezt hívjuk meg, amikor a rescue megtörtént!
     public UnityEvent OnRescueCompleted; 
 
     void Start()
@@ -107,11 +104,9 @@ public class HostageCage : MonoBehaviour
         while(t < 1f)
         {
             t += Time.deltaTime;
-            // A Cube-ot fokozatosan a föld alá toljuk
             cageObject.position = Vector3.Lerp(initialPos, targetPos, t); 
             yield return null;
         }
-        // Kikapcsoljuk az ajtó ütközőjét (ha maradt)
         GetComponent<Collider>().enabled = false;
     }
 }

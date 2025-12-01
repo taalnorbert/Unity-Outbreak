@@ -1,0 +1,13 @@
+{
+    "asset": "ca5929ae8598ef9408954c4e2c52b5e8",
+    "fileName": "019ada49-acbc-795c-a96b-fd533e099d56.wav",
+    "prompt": "generate a zombie game audio, it is a shooting zombie game and this sound will be playing all time in the game, make scary and spooky atmoshpehere",
+    "negativePrompt": "",
+    "model": "ee31b223-3fe1-4ae6-bf54-d8a80bb4b0e1",
+    "modelName": "",
+    "customSeed": -1,
+    "w3CTraceId": "16a7c5c9125a73fc41bde611f1c78fdc",
+    "duration": 10.0,
+    "autoTrim": false,
+    "hasReference": false
+}

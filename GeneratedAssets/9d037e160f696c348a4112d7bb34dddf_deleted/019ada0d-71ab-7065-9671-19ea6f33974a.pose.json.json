@@ -1,0 +1,11 @@
+{
+    "asset": "f43fcd6333ec0b745919f6917b6ff9d5",
+    "fileName": "019ada0d-71ab-7065-9671-19ea6f33974a.pose.json",
+    "prompt": "pistol muzzle flash particle system",
+    "negativePrompt": "",
+    "model": "9e46c009-67d8-4254-a3a0-32e3168247ee",
+    "modelName": "Text to Motion",
+    "customSeed": 1412729405,
+    "w3CTraceId": "f0c359dbcb0fb9d3c393446a921bc80c",
+    "isTrimmed": false
+}

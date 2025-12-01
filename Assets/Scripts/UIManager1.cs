@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro; 
 using UnityEngine.SceneManagement;
+using StarterAssets; 
 
 public class UIManager1 : MonoBehaviour
 {
@@ -9,37 +10,45 @@ public class UIManager1 : MonoBehaviour
     public WaveManager waveManager;    
     public TextMeshProUGUI healthText; 
     public TextMeshProUGUI waveText;   
-    public TextMeshProUGUI ammoText; // Feltételezve, hogy ez is kell a UI-ban
+    public TextMeshProUGUI ammoText;
 
     [Header("Game Over & Win UI")]
     public GameObject gameOverPanel;
     public GameObject gameWinPanel;
 
+    private FirstPersonController fpsController; 
+    private CharacterController characterController;
+
     void Start()
     {
-        // UI Panelek elrejtése
         if (gameOverPanel != null) gameOverPanel.SetActive(false);
         if (gameWinPanel != null) gameWinPanel.SetActive(false);
         Time.timeScale = 1f; 
         
-        // Elrejti az egeret
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            fpsController = player.GetComponent<FirstPersonController>();
+            characterController = player.GetComponent<CharacterController>();
+            playerHealth = player.GetComponent<PlayerHealth>();
+        }
+        
+        waveManager = FindFirstObjectByType<WaveManager>();
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
     void Update()
     {
-        // Csak akkor frissítsük az UI-t, ha a játék fut
         if (Time.timeScale > 0f)
         {
             UpdateHealthUI();
             UpdateWaveUI();
         }
         
-        // ESC gomb a kurzor megjelenítéséhez (opcionális menü)
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            // Toggle kurzor lock/unlock (szüneteltetés nélkül)
             if (Time.timeScale == 1f)
             {
                 Cursor.lockState = CursorLockMode.None;
@@ -70,41 +79,40 @@ public class UIManager1 : MonoBehaviour
             int currentWave = waveManager.GetCurrentWaveNumber();
             int enemiesRemaining = waveManager.GetEnemiesRemaining();
             
-            // 🚨 BOSS VIZSGÁLAT: Ha a BossZombi létezik, írjuk ki az életét
             GameObject boss = GameObject.FindGameObjectWithTag("Boss");
             
             if (boss != null)
             {
-                // Feltéve, hogy a Boss HP sávja látható
                 waveText.text = "BOSS FIGHT KÉSZ!"; 
             }
             else
             {
-                // Normál hullám információ
                 waveText.text = $"Hullám: {currentWave}\nEllenség Maradt: {enemiesRemaining}";
             }
         }
     }
 
-
-    // Ezt a PlayerHealth.cs hívja
     public void ShowGameOver()
     {
         if (gameOverPanel != null)
         {
-            // Megjelenítjük az egeret (ezt a PlayerHealth.Die() is csinálja, de itt is biztonságos)
+            if (fpsController != null) fpsController.enabled = false;
+            if (characterController != null) characterController.enabled = false;
+            Time.timeScale = 0f; 
+            
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             gameOverPanel.SetActive(true);
         }
     }
 
-    // Ezt a GameFlowManager.cs hívja
     public void ShowGameWin()
     {
         if (gameWinPanel != null)
         {
-            // Megállítja a játékot (bár a GameFlowManager is megteszi)
+            if (fpsController != null) fpsController.enabled = false;
+            if (characterController != null) characterController.enabled = false;
+
             Time.timeScale = 0f; 
             
             Cursor.lockState = CursorLockMode.None;
@@ -115,19 +123,13 @@ public class UIManager1 : MonoBehaviour
 
     public void RestartGame()
     {
-        // 1. Állítsuk vissza a játékidőt
         Time.timeScale = 1f;
-        // 2. Töltsük újra az aktuális Scene-t
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     
     public void QuitGame()
     {
-        Debug.Log("Játék bezárása...");
-        Application.Quit();
-
-        #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-        #endif
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
     }
 }

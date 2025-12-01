@@ -87,7 +87,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 1.5
+  m_Speed: 2.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -116,7 +116,8 @@ MonoBehaviour:
   currentHealth: 0
   chaseDistance: 70
   lookRadius: 10
-  damage: 10
+  minDamage: 5
+  maxDamage: 15
   attackRate: 1
   alertSoundSource: {fileID: 1077119566322805632}
   deathSoundSource: {fileID: 2463683233934689481}
